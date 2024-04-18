@@ -3,6 +3,7 @@ package eat.cake.team3.domain.goal;
 import eat.cake.team3.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,5 +30,12 @@ public class Goal {
     this.userId = userId;
   }
 
-
+  @Builder
+  public Goal(Long id, String title, String description, LocalDateTime uploadDate, User userId) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.uploadDate = uploadDate;
+    this.userId = userId;
+  }
 }
