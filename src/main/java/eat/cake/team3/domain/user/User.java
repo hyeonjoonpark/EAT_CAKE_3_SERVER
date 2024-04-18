@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
   @Id
-  private Long id;
+  private String id;
   private String provider;
   private String providerId;
   private String email;
@@ -29,7 +29,7 @@ public class User {
   private String refreshToken;
 
   @Builder
-  public User(Long id, String provider, String providerId, String email, String userName, Date birth, String phoneNumber, GenderType gender, int age, String profileImage, String refreshToken) {
+  public User(String id, String provider, String providerId, String email, String userName, Date birth, String phoneNumber, GenderType gender, int age, String profileImage, String refreshToken) {
     this.id = id;
     this.provider = provider;
     this.providerId = providerId;
