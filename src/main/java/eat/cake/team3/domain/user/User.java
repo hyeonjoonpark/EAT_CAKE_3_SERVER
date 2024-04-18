@@ -1,5 +1,6 @@
 package eat.cake.team3.domain.user;
 
+import eat.cake.team3.domain.goal.Goal;
 import eat.cake.team3.domain.user.types.GenderType;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -8,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -28,9 +30,21 @@ public class User {
   private String profileImage;
   private String refreshToken;
 
+  @OneToMany(
+    mappedBy = "userId",
+    cascade = CascadeType.ALL,
+    orphanRemoval = true,
+    fetch = FetchType.LAZY
+  )
+  private List<Goal> goals;
+
+  public void addGoal(Goal goal) {
+    goal.setUserId(this);
+    goals.add(goal);
+  }
+
   @Builder
-  public User(String id, String provider, String providerId, String email, String userName, Date birth, String phoneNumber, GenderType gender, int age, String profileImage, String refreshToken) {
-    this.id = id;
+  public User(String provider, String providerId, String email, String userName, Date birth, String phoneNumber, GenderType gender, int age, String profileImage, String refreshToken, List<Goal> goals) {
     this.provider = provider;
     this.providerId = providerId;
     this.email = email;
@@ -41,5 +55,6 @@ public class User {
     this.age = age;
     this.profileImage = profileImage;
     this.refreshToken = refreshToken;
+    this.goals = goals;
   }
 }
