@@ -34,8 +34,7 @@ public class User {
   @OneToMany(
     mappedBy = "userId",
     cascade = CascadeType.ALL,
-    orphanRemoval = true,
-    fetch = FetchType.LAZY
+    orphanRemoval = true
   )
   private List<Goal> goals;
 
@@ -45,15 +44,22 @@ public class User {
   }
 
   @OneToMany(
-    mappedBy = "followerName",
+    mappedBy = "requester",
     cascade = CascadeType.ALL,
-    fetch = FetchType.LAZY,
     orphanRemoval = true
   )
-  private List<Friend> friends;
+  private List<Friend> sentRequests;
+
+  @OneToMany(
+    mappedBy = "addresser",
+    cascade = CascadeType.ALL,
+    orphanRemoval = true
+  )
+  private List<Friend> receivedRequests;
+
 
   @Builder
-  public User(String id, String provider, String providerId, String email, String userName, Date birth, String phoneNumber, GenderType gender, int age, String profileImage, String refreshToken, List<Goal> goals, List<Friend> friends) {
+  public User(String id, String provider, String providerId, String email, String userName, Date birth, String phoneNumber, GenderType gender, int age, String profileImage, String refreshToken, List<Goal> goals, List<Friend> sentRequests, List<Friend> receivedRequests) {
     this.id = id;
     this.provider = provider;
     this.providerId = providerId;
@@ -66,6 +72,7 @@ public class User {
     this.profileImage = profileImage;
     this.refreshToken = refreshToken;
     this.goals = goals;
-    this.friends = friends;
+    this.sentRequests = sentRequests;
+    this.receivedRequests = receivedRequests;
   }
 }

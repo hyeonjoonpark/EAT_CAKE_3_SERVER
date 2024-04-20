@@ -25,7 +25,7 @@ public class Goal {
   private LocalDateTime startTime; // 타이머 시작 시간
   private LocalDateTime endTime; // 타이머 끝난 시간
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "id")
   private User userId;
 
