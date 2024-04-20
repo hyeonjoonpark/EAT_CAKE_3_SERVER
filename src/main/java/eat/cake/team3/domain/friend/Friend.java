@@ -1,6 +1,6 @@
-package eat.cake.team3.domain.follow;
+package eat.cake.team3.domain.friend;
 
-import eat.cake.team3.domain.follow.types.StatusType;
+import eat.cake.team3.domain.friend.types.StatusType;
 import eat.cake.team3.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;

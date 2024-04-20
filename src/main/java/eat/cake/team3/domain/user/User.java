@@ -1,6 +1,6 @@
 package eat.cake.team3.domain.user;
 
-import eat.cake.team3.domain.follow.Friend;
+import eat.cake.team3.domain.friend.Friend;
 import eat.cake.team3.domain.goal.Goal;
 import eat.cake.team3.domain.user.types.GenderType;
 import jakarta.persistence.*;

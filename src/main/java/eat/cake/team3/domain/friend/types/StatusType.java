@@ -1,4 +1,4 @@
-package eat.cake.team3.domain.follow.types;
+package eat.cake.team3.domain.friend.types;
 
 public enum StatusType {
   ACCEPT,
