@@ -22,6 +22,9 @@ public class Goal {
   @CreationTimestamp
   private LocalDateTime uploadDate = LocalDateTime.now();
 
+  private LocalDateTime startTime; // 타이머 시작 시간
+  private LocalDateTime endTime; // 타이머 끝난 시간
+
   @ManyToOne
   @JoinColumn(name = "id")
   private User userId;
@@ -31,11 +34,13 @@ public class Goal {
   }
 
   @Builder
-  public Goal(Long id, String title, String description, LocalDateTime uploadDate, User userId) {
+  public Goal(Long id, String title, String description, LocalDateTime uploadDate, LocalDateTime startTime, LocalDateTime endTime, User userId) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.uploadDate = uploadDate;
+    this.startTime = startTime;
+    this.endTime = endTime;
     this.userId = userId;
   }
 }
