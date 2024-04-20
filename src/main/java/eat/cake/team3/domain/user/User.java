@@ -1,5 +1,6 @@
 package eat.cake.team3.domain.user;
 
+import eat.cake.team3.domain.follow.Friend;
 import eat.cake.team3.domain.goal.Goal;
 import eat.cake.team3.domain.user.types.GenderType;
 import jakarta.persistence.*;
@@ -43,8 +44,17 @@ public class User {
     goals.add(goal);
   }
 
+  @OneToMany(
+    mappedBy = "followerName",
+    cascade = CascadeType.ALL,
+    fetch = FetchType.LAZY,
+    orphanRemoval = true
+  )
+  private List<Friend> friends;
+
   @Builder
-  public User(String provider, String providerId, String email, String userName, Date birth, String phoneNumber, GenderType gender, int age, String profileImage, String refreshToken, List<Goal> goals) {
+  public User(String id, String provider, String providerId, String email, String userName, Date birth, String phoneNumber, GenderType gender, int age, String profileImage, String refreshToken, List<Goal> goals, List<Friend> friends) {
+    this.id = id;
     this.provider = provider;
     this.providerId = providerId;
     this.email = email;
@@ -56,5 +66,6 @@ public class User {
     this.profileImage = profileImage;
     this.refreshToken = refreshToken;
     this.goals = goals;
+    this.friends = friends;
   }
 }
